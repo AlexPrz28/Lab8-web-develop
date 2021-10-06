@@ -1,0 +1,19 @@
+.navbar {
+    background-color: #ff7b00f7 !important;
+}
+
+a.product-list-link:link {
+    color: black !important;
+    text-decoration: none !important;
+  }
+  
+  a.product-list-link:visited {
+    color: black !important;
+    text-decoration: none !important;
+  }
+  
+  a.product-list-link:hover {
+    color: rgb(31, 31, 31) !important;
+    text-decoration: none !important;
+  }
+  

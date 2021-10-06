@@ -1,0 +1,45 @@
+.productInfo {
+    margin: 10px;
+    padding: 10px;
+  }
+  
+  img.largeImage {
+    width: 500px !important;
+    height: 500px !important;
+  }
+  
+  div.largeImage {
+    box-shadow: none;
+    background-color: #fafafa;
+  }
+  
+  .productName {
+    font-size: 3em !important;
+  }
+  
+  .productGrid {
+    flex-grow: 1;
+  }
+  
+  .dollars:before {
+    content: "$";
+  }
+  
+  .productLabel {
+    font-weight: bold !important;
+  }
+  
+  .crossedout {
+    text-decoration: line-through;
+  }
+  
+  .cartButton {
+    background-color: #ff7b00f7 !important;
+    color: #ffffff !important;
+  }
+
+  h2.comment-title {
+    font-size: 1.5rem !important;
+    font-weight: bold;
+  }
+  

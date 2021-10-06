@@ -1,0 +1,55 @@
+.productPreview {
+    margin: 20px;
+    padding: 20px;
+  }
+
+  a.product-link:link {
+    color: black !important;
+    text-decoration: none !important;
+  }
+  
+  a.product-link:visited {
+    color: black !important;
+    text-decoration: none !important;
+  }
+  
+  a.product-link:hover {
+    color: rgb(31, 31, 31) !important;
+    text-decoration: none !important;
+  }
+  
+  
+  img.largeImage {
+    width: 500px !important;
+    height: 500px !important;
+  }
+  
+  div.largeImage {
+    box-shadow: none;
+    background-color: #fafafa;
+  }
+  
+  .productName {
+    font-size: 3em !important;
+  }
+  
+  .productGrid {
+    flex-grow: 1;
+  }
+  
+  .dollars:before {
+    content: "$";
+  }
+  
+  .productLabel {
+    font-weight: bold !important;
+  }
+  
+  .crossedout {
+    text-decoration: line-through;
+  }
+  
+  .cartButton {
+    background-color: #ff7b00f7 !important;
+    color: #ffffff !important;
+  }
