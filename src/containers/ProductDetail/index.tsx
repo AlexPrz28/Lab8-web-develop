@@ -6,14 +6,14 @@ import Product from "../../types/Product";
 import Sku from "../../types/Sku";
 
 interface ProductState {
-    product: Product;
-    helper: ProductHelper;
-    colors: string[];
-    selectedColor: string;
-    sizes: string[];
-    selectedSize: string;
-    quantity: number;
-    sku: Sku;
+  product: Product;
+  helper: ProductHelper;
+  colors: string[];
+  selectedColor: string;
+  sizes: string[];
+  selectedSize: string;
+  quantity: number;
+  sku: Sku;
 }
 
 /**
@@ -21,62 +21,90 @@ interface ProductState {
  * @extends {Component<Props, State>}
  */
 class ProductDetail extends React.Component<{}, ProductState> {
-    state = {
-        product: {} as Product,
-        helper: {} as ProductHelper,
-        colors: [] as string[],
-        selectedColor: '',
-        sizes: [] as string[],
-        selectedSize: '',
-        quantity: 1,
-        sku: {} as Sku
-    }
+  state = {
+    product: {} as Product,
+    helper: {} as ProductHelper,
+    colors: [] as string[],
+    selectedColor: "",
+    sizes: [] as string[],
+    selectedSize: "",
+    quantity: 1,
+    sku: {} as Sku,
+  };
 
-    /**
-     * Renders the container.
-     * @return {any} - HTML markup for the container
-     */
-    render() {
-        return (
-            <ProductInfo product={this.state.product} colors={this.state.colors} selectedColor={this.state.selectedColor} changedColor={this.changedColor} />
-        )
-    }
+  /**
+   * Renders the container.
+   * @return {any} - HTML markup for the container
+   */
+  render() {
+    return (
+      <ProductInfo
+        product={this.state.product}
+        colors={this.state.colors}
+        selectedColor={this.state.selectedColor}
+        changedColor={this.changedColor}
+        sizes={this.state.sizes}
+        selectedSize={this.state.selectedSize}
+        changedSize={this.changedSize}
+      />
+    );
+  }
 
-    componentDidMount() {
-        const queryString = window.location.search;
-        const urlParams = new URLSearchParams(queryString);
-        const productId = Number(urlParams.get('productId'));
+  componentDidMount() {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const productId = Number(urlParams.get("productId"));
 
-        ProductService.get(productId)
-            .then(response => {
-                const product = response.data;
-                console.log(product);
-                const helper = new ProductHelper(product);
-                const colors = helper.getColors();
-                let sizes = [] as string[];
+    ProductService.get(productId)
+      .then((response) => {
+        const product = response.data;
+        console.log(product);
+        const helper = new ProductHelper(product);
+        const colors = helper.getColors();
+        let sizes = [] as string[];
 
-                if (colors.length  >= 1) {
-                    sizes = helper.getSizes(colors[0]);
-                }
+        if (colors.length >= 1) {
+          const defaultSelectedColor = colors[0];
+          sizes = helper.getSizes(colors[0]);
 
-                console.log("Sizes: " + sizes);
+          if (sizes.length >= 1) {
+            const defaultSelectedSize = sizes[0];
+            this.setState({ selectedSize: defaultSelectedSize });
+          }
 
-                this.setState({ product, helper, colors, sizes });
-            }).catch(error => {
-                console.log(error);
-            });
-    }
+          this.setState({ selectedColor: defaultSelectedColor });
+        }
 
-    changedColor = (event: any) => {
-        let target = event.currentTarget as HTMLSelectElement;
-        let value = target.value;
+        console.log("Sizes: " + sizes);
 
-        console.log("selectedColor: " + value);
+        this.setState({ product, helper, colors, sizes });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
-        this.setState({
-            selectedColor: value
-        })
-    } 
+  changedColor = (event: any) => {
+    let target = event.currentTarget as HTMLSelectElement;
+    let value = target.value;
+
+    console.log("selectedColor: " + value);
+
+    this.setState({
+      selectedColor: value,
+    });
+  };
+
+  changedSize = (event: any) => {
+    let target = event.currentTarget as HTMLSelectElement;
+    let value = target.value;
+
+    console.log("selectedSize: " + value);
+
+    this.setState({
+      selectedSize: value,
+    });
+  };
 }
 
 export default ProductDetail;
