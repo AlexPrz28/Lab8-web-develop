@@ -14,6 +14,7 @@ import {
   Divider,
 } from "@material-ui/core";
 import React from "react";
+import Sku from "../../types/Sku";
 
 interface ProductInfoProps {
   product: Product;
@@ -23,6 +24,8 @@ interface ProductInfoProps {
   changedColor(event: any): void;
   selectedSize: string;
   changedSize(event: any): void;
+  sku: Sku;
+  logSku(event: any): void;
 }
 
 /**
@@ -166,7 +169,11 @@ const ProductInfo: React.FC<ProductInfoProps> = (props) => {
           <Grid item lg={10} />
 
           <Grid item lg={4}>
-            <Button className="cartButton" variant="contained">
+            <Button
+              className="cartButton"
+              variant="contained"
+              onClick={props.logSku}
+            >
               Add to Cart
             </Button>
           </Grid>

@@ -46,6 +46,8 @@ class ProductDetail extends React.Component<{}, ProductState> {
         sizes={this.state.sizes}
         selectedSize={this.state.selectedSize}
         changedSize={this.changedSize}
+        sku={this.state.sku}
+        logSku={this.logSku}
       />
     );
   }
@@ -110,6 +112,18 @@ class ProductDetail extends React.Component<{}, ProductState> {
     this.setState({
       selectedSize: value,
       sku,
+    });
+  };
+
+  logSku = (event: any) => {
+    let printedSku = this.state.helper.getSku(
+      this.state.selectedColor,
+      this.state.selectedSize
+    );
+    console.log("Sku ID: " + printedSku.id);
+
+    this.setState({
+      sku: printedSku,
     });
   };
 }
